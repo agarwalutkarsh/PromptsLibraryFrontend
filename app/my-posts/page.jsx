@@ -4,7 +4,7 @@ import CategoryTags from '@/components/CategoryTags'
 import { MainContext } from '@/components/ContextApi/MainContext'
 import PromptCard from '@/components/PromptCard'
 import { deletePost, getPostByUser } from '@/utils/Post'
-import { Box, Button, Card, CardActions, CardContent, Typography } from '@mui/material'
+import { Box, Button, Typography } from '@mui/material'
 import Link from 'next/link'
 import React, { useContext, useEffect, useMemo, useState } from 'react'
 
@@ -13,10 +13,10 @@ const MyPosts = () => {
     const mainContext = useContext(MainContext)
     const user = useMemo(() => ({ ...mainContext.userDetails }), [mainContext])
 
+    // Api call to fetch post by email
     const fetchPostByUser = () => {
         const response = getPostByUser()
         response.then((resp) => {
-            console.log(resp.data)
             setUserPosts([...resp?.data])
         }).catch(err => console.error(err))
     }
@@ -25,6 +25,7 @@ const MyPosts = () => {
         fetchPostByUser()
     }, [])
 
+    // Delete Post Api call
     const deleteUserPost = (id) => {
         const response = deletePost(id)
         response?.then((resp) => {
@@ -41,6 +42,7 @@ const MyPosts = () => {
                 {
                     userPosts?.map(item => (
                         <PromptCard item={item} cardActions={<div className='flex justify-center mx-auto w-full'>
+                            {/* Actions */}
                             <Link href={`update-post/${item?._id}`}><Button variant='contained' size='small' className=' mx-1 bg-blue-400 hover:bg-blue-500 text-white'>Edit</Button></Link>
                             <Button variant='contained' size='small' className=' mx-1 bg-red-400 hover:bg-red-500 text-white' onClick={() => deleteUserPost(item?._id)}>Delete</Button>
                         </div>} />

@@ -12,9 +12,12 @@ const Form = ({ post, mode, setPost, createPost }) => {
 
     return (
         <Box className='w-full max-w-full flex flex-start flex-col' >
+            {/* Form for Creating and Updating the Prompts */}
             <Typography className='head_text text-left blue_gradient'>{mode} Post</Typography>
             <Typography className='desc'>{mode} and share the interesting AI prompts that could make a difference</Typography>
             <form onSubmit={createPost} className='mt-10 w-full max-w-2xl flex flex-col gap-7 glassmorphism'>
+
+                {/* Prompt */}
                 <FormLabel className='font-satoshi font-semibold text-gray-700'>Enter Your Prompt</FormLabel>
                 <TextField required placeholder='Generate a photo of a bike moving with 3 people sitting on it on indian roads...'
                     name='prompt'
@@ -24,6 +27,7 @@ const Form = ({ post, mode, setPost, createPost }) => {
                     rows={10}
                     value={post?.prompt} />
 
+                {/* Tags */}
                 <FormLabel className='font-satoshi font-semibold text-gray-700'>Enter Categories seperated by comma(,)</FormLabel>
                 <TextField
                     required
