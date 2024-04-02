@@ -4,6 +4,7 @@ import { Tooltip } from '@mui/material'
 import React, { useMemo } from 'react'
 
 const CategoryTags = ({ category }) => {
+    // Category Tags
     const tagsArr = useMemo(() => {
         const categorySplit = category?.split(',')
         return categorySplit?.filter(elem => elem !== '')

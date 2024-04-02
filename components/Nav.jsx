@@ -13,6 +13,7 @@ const Nav = () => {
     const mainContext = useContext(MainContext)
     const isUserLoggedIn = mainContext.isLoggedIn ?? false
 
+    // Form Handlers
     const handleOpenForm = () => {
         setFormOpen(true)
     }
@@ -23,14 +24,16 @@ const Nav = () => {
 
     return (
         <div className='mt-20'>
+            {/* Navbar */}
             <AppBar elevation={0} className='bg-transparent '>
                 <Toolbar disableGutters>
                     <Box sx={{ flexGrow: 1 }}>
                         <Link href='/' className='flex gap-3'>
                             <Image src='/assets/images/logo.svg' alt='Logo' width={30} height={30} className='ml-8 object-contain' />
-                            <Typography className='logo_text'>Prompt</Typography>
+                            <Typography className='logo_text'>Prompts Library</Typography>
                         </Link>
                     </Box>
+                    {/* Options showing on the basis of login status of the user */}
                     {
                         !isUserLoggedIn
                             ? <>

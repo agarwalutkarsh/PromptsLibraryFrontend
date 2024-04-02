@@ -4,6 +4,7 @@ import { Typography } from "@mui/material"
 
 const Home = () => {
   return (
+    // Home Page
     <>
       <div className="flex flex-col text-center w-full">
         <Typography component='h1' className="head_text">Discover & Share</Typography>

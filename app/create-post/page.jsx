@@ -16,6 +16,7 @@ const CreatePrompt = () => {
 
     const mode = 'Add'
 
+    // Create Post Api call
     const createPost = (e) => {
         e.preventDefault()
         const postBody = {
@@ -25,10 +26,11 @@ const CreatePrompt = () => {
         }
         const createResponse = createPostApi(postBody)
         createResponse.then((resp) => {
+          // redirecting to dashboard after successfull creaton
           if (resp?.status === 201) {
             router.push('/')
           }
-        }).catch(err => console.log(err))
+        }).catch(err => console.error(err))
     }
 
   return (

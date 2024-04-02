@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import CategoryTags from './CategoryTags'
 
 const PromptCard = ({ item, cardActions }) => {
+  // Post Card
   return (
     <Card key={item?._id} className='w-full backdrop-blur-md bg-white/20 relative'>
       <CardContent className='overflow-y-auto max-h-[30vh] mb-10'>

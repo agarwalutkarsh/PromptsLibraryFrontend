@@ -13,6 +13,7 @@ const Feed = () => {
   const isLoggedIn = mainContext.isLoggedIn
 
 
+  // Fetching all posts and posts by criteria/ Tags
   const fetchPostsFunc = () => {
     if (search === '') {
       const postsResponse = getAllPosts()
@@ -30,6 +31,7 @@ const Feed = () => {
     }
   }
 
+  // Debouncer function for calling fetch post
   useEffect(() => {
     const debounceTimeout = setTimeout(fetchPostsFunc, 800)
     return () => clearTimeout(debounceTimeout)
@@ -37,6 +39,7 @@ const Feed = () => {
 
   return (
     <>
+    {/* Search Bar */}
     <Box className='feed' >
       <form className='w-full max-w-2xl flex flex-col backdrop-blur-md border-gray-200 '>
         <TextField

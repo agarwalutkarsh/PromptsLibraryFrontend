@@ -12,10 +12,10 @@ const MainContextWrapper = (props) => {
     const pathname = usePathname()
     const router = useRouter()
 
+    // Checking for logged in user
     useEffect(() => {
         const token = localStorage.getItem('token')
         if (token !== null && token !== undefined) {
-            console.log(localStorage.getItem('email') ?? '')
             setUserDetails({
                 firstName: localStorage.getItem('firstName') ?? '',
                 lastName: localStorage.getItem('lastName') ?? '',
@@ -25,18 +25,16 @@ const MainContextWrapper = (props) => {
         }
     }, [])
 
+    // Identifying the unprotected routes
     const unprotectedRoutes = ['/']
 
     const isUnProtectedRoute = useMemo(() => unprotectedRoutes?.includes(pathname), [pathname])
 
+    // Route Protection
     useEffect(() => {
-        console.log(isUnProtectedRoute)
         if (!isUnProtectedRoute && !isLoggedIn) {
-            console.log(isLoggedIn)
             router.push('/')
         } else {
-            console.log('Else')
-            console.log(pathname)
             router.push(pathname)
         }
     }, [isLoggedIn, isUnProtectedRoute])

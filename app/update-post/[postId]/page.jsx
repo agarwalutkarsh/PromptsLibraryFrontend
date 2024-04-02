@@ -12,6 +12,7 @@ const UpdateForm = ({ params }) => {
     category: ''
 })
 
+// On Successfull update
 const editPost = (e) => {
   e.preventDefault()
   const response = updatePost(params?.postId, post)
@@ -22,11 +23,12 @@ const editPost = (e) => {
   })
 }
 
+// Getting post by post id
 useEffect(() => {
   if (params.postId) {
+    // Accessing the post id from params
     const response = getPostByPostId(params.postId)
     response.then((resp) => {
-      console.log(resp)
       setPost(() => ({
         prompt: resp?.data?.prompt,
         category: resp?.data?.category

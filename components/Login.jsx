@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 import { loginUser, signupUser } from '@/utils/Auth'
 import { MainContext } from './ContextApi/MainContext'
 
-const Login = ({ formOpen, setFormOpen, handleFormClose}) => {
+const Login = ({ formOpen, handleFormClose }) => {
 
     const [isLoginForm, setIsLoginForm] = useState(true)
     const [formBody, setFormBody] = useState({})
@@ -15,7 +15,7 @@ const Login = ({ formOpen, setFormOpen, handleFormClose}) => {
     const handleChange = (e) => {
         const value = e.target.value
         const name = e.target.name
-        setFormBody(prevState => ({...prevState, [name]: value}))
+        setFormBody(prevState => ({ ...prevState, [name]: value }))
     }
 
     useEffect(() => {
@@ -26,27 +26,31 @@ const Login = ({ formOpen, setFormOpen, handleFormClose}) => {
 
     const submitHandler = () => {
         const isLogin = loginText === 'Login'
+        // Depending on the mode, call the function
         const apiFunc = isLogin ? loginUser : signupUser
         const response = apiFunc(formBody)
         response.then((resp) => {
             if (resp?.status === 200) {
-            localStorage.setItem('token', resp?.data?.data?.token ?? resp?.data?.token)
-            const userObj = {
-                firstName: resp?.data?.data?.firstName,
-                lastName: resp?.data?.data?.lastName,
-                email: resp?.data?.data?.email
+                localStorage.setItem('token', resp?.data?.data?.token ?? resp?.data?.token)
+                const userObj = {
+                    firstName: resp?.data?.data?.firstName,
+                    lastName: resp?.data?.data?.lastName,
+                    email: resp?.data?.data?.email
+                }
+                // Setting Local storage on successfull login
+                localStorage.setItem('firstName', userObj?.firstName)
+                localStorage.setItem('lastName', userObj?.lastName)
+                localStorage.setItem('email', userObj?.email)
+                mainContext.setUserDetails({ ...userObj })
+                mainContext.setIsLoggedIn(true)
+                // Close the form
+                handleFormClose()
             }
-            localStorage.setItem('firstName', userObj?.firstName)
-            localStorage.setItem('lastName', userObj?.lastName)
-            localStorage.setItem('email', userObj?.email)
-            mainContext.setUserDetails({...userObj})
-            mainContext.setIsLoggedIn(true)
-            handleFormClose()
-        }
         }).catch(err => console.error(err))
     }
 
     return (
+        // Form
         <Dialog
             fullWidth={true}
             maxWidth='xs'
@@ -69,6 +73,7 @@ const Login = ({ formOpen, setFormOpen, handleFormClose}) => {
                 <TextField label='Email' name='email' onChange={handleChange} className='w-full my-2' type='eamil' required />
                 <TextField label='Password' name='password' onChange={handleChange} className='w-full my-2' type='password' required />
             </DialogContent>
+            {/* Action Buttons */}
             <DialogActions className='flex flex-col'>
                 <div className='w-[90%] mx-auto mb-4 flex justify-between'>
                     <Button className='text-white rounded-lg mx-2 bg-red-500 hover:bg-red-700 w-1/2' onClick={() => handleFormClose()}>Cancel</Button>
@@ -82,7 +87,6 @@ const Login = ({ formOpen, setFormOpen, handleFormClose}) => {
 
 Login.propTypes = {
     formOpen: PropTypes.bool,
-    setFormOpen: PropTypes.func,
     loginMode: PropTypes.bool,
     handleFormClose: PropTypes.func
 }
