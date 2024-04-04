@@ -10,6 +10,7 @@ const Login = ({ formOpen, handleFormClose }) => {
 
     const [isLoginForm, setIsLoginForm] = useState(true)
     const [formBody, setFormBody] = useState({})
+    const [showPassword, setShowPassword] = useState(false)
     const mainContext = useContext(MainContext)
 
     const handleChange = (e) => {
@@ -49,6 +50,12 @@ const Login = ({ formOpen, handleFormClose }) => {
         }).catch(err => console.error(err))
     }
 
+    const helperTextFunction = () => {
+        return (
+            <Typography className='text-xs text-blue-400 hover:cursor-pointer hover:text-blue-500' onClick={() => setShowPassword(!showPassword)}>{showPassword ? 'Hide' : 'Show'} Password</Typography>
+        )
+    }
+
     return (
         // Form
         <Dialog
@@ -71,7 +78,7 @@ const Login = ({ formOpen, handleFormClose }) => {
                     </>
                 }
                 <TextField label='Email' name='email' onChange={handleChange} className='w-full my-2' type='eamil' required />
-                <TextField label='Password' name='password' onChange={handleChange} className='w-full my-2' type='password' required />
+                <TextField label='Password' name='password' onChange={handleChange} className='w-full my-2' type={showPassword ? 'text' : 'password'} required helperText={helperTextFunction()}/>
             </DialogContent>
             {/* Action Buttons */}
             <DialogActions className='flex flex-col'>
