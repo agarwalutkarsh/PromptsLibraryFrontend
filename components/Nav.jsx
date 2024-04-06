@@ -6,12 +6,14 @@ import Link from 'next/link'
 import React, { useContext, useState } from 'react'
 import Login from './Login'
 import { MainContext } from './ContextApi/MainContext'
+import { useRouter } from 'next/navigation'
 
 const Nav = () => {
 
     const [formOpen, setFormOpen] = useState(false)
     const mainContext = useContext(MainContext)
     const isUserLoggedIn = mainContext.isLoggedIn ?? false
+    const router = useRouter()
 
     // Form Handlers
     const handleOpenForm = () => {
@@ -20,6 +22,12 @@ const Nav = () => {
 
     const handleFormClose = () => {
         setFormOpen(false)
+    }
+
+    const logoutHandler = () => {
+        localStorage.clear()
+        mainContext.setIsLoggedIn(false)
+        router.push('/')
     }
 
     return (
@@ -46,6 +54,7 @@ const Nav = () => {
                                 <Link href='/my-posts' className='black_btn mr-8'>
                                     My Posts
                                 </Link>
+                                <span onClick={logoutHandler} className='black_btn mr-8 hover: cursor-pointer'>Logout</span>
                             </>
                     }
                 </Toolbar>

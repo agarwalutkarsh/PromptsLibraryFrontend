@@ -1,1 +1,1 @@
-export const apiUrl = 'http://localhost:8080/'
+export const apiUrl = 'https://prompts-library-backend.vercel.app/'
