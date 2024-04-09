@@ -14,6 +14,12 @@ pnpm dev
 bun dev
 ```
 
+Add .env file to the root folder and add this variable:
+
+```bash
+NEXT_PUBLIC_API_URL=Deployed API URL or Local host
+```
+
 Open [http://localhost:5000](http://localhost:5000) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
