@@ -3,7 +3,7 @@ import Nav from '@/components/Nav'
 import '@/styles/globals.css' // This will apply the css to all the pages
 
 export const metadata = {
-  title: 'Prompts Library',
+  title: 'Next.js',
   description: 'Next Js 14 Project - Fullstack',
 }
 
