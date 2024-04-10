@@ -7,10 +7,10 @@ const Home = () => {
     // Home Page
     <>
       <div className="flex flex-col text-center w-full">
-        <Typography component='h1' className="head_text">Discover & Share</Typography>
+        <h1  className="head_text">Discover & Share</h1>
         <br className="max-md:hidden" />
-        <Typography className="orange_gradient head_text">AI Powered Prompts</Typography>
-        <Typography className="desc m-auto">Open Source Tool for the mordern world to discover, create and share creative AI powered prompts</Typography>
+        <p className="orange_gradient head_text">AI Powered Prompts</p>
+        <p className="desc m-auto">Open Source Tool for the mordern world to discover, create and share creative AI powered prompts</p>
       </div>
 
       <Feed />
