@@ -39,7 +39,7 @@ const Nav = () => {
                 {
                         !isUserLoggedIn
                             ? <>
-                                <span className='black_btn mx-2 hover:cursor-pointer' onClick={handleOpenForm}>Login</span>
+                                <span className='black_btn mx-2 hover:cursor-pointer' onClick={handleOpenForm}>Login / Signup</span>
                             </>
                             : <div className='flex'>
                                 <Link href='/create-post' className='black_btn mr-8' >
