@@ -1,10 +1,9 @@
 'use client'
 
-import CategoryTags from '@/components/CategoryTags'
 import { MainContext } from '@/components/ContextApi/MainContext'
 import PromptCard from '@/components/PromptCard'
 import { deletePost, getPostByUser } from '@/utils/Post'
-import { Box, Button, Typography } from '@mui/material'
+import { Box } from '@mui/material'
 import Link from 'next/link'
 import React, { useContext, useEffect, useMemo, useState } from 'react'
 
@@ -35,17 +34,18 @@ const MyPosts = () => {
 
     return (
         <Box className='max-w-full w-full flex flex-col flex-start' >
-            <Typography className='head_text text-left blue_gradient'>Hi, {user?.firstName} {user?.lastName}</Typography>
-            <Typography className='desc'>Edit or Delete your AI Prompts</Typography>
+            <p className='head_text text-left blue_gradient'>Hi, {user?.firstName} {user?.lastName}</p>
+            <p className='desc'>Edit or Delete your AI Prompts</p>
             <div className='grid grid-cols-3 gap-4 mt-12'>
 
                 {
                     userPosts?.map(item => (
-                        <PromptCard item={item} cardActions={<div className='flex justify-center mx-auto w-full'>
-                            {/* Actions */}
-                            <Link href={`update-post/${item?._id}`}><Button variant='contained' size='small' className=' mx-1 bg-blue-400 hover:bg-blue-500 text-white'>Edit</Button></Link>
-                            <Button variant='contained' size='small' className=' mx-1 bg-red-400 hover:bg-red-500 text-white' onClick={() => deleteUserPost(item?._id)}>Delete</Button>
-                        </div>} />
+                        <PromptCard item={item} cardActions={
+                            <div className='flex justify-center mx-auto w-full '>
+                                {/* Actions */}
+                                <Link className='w-1/2 mx-2' href={`update-post/${item?._id}`}><button className='rounded-md px-2 py-1 w-full bg-blue-400 hover:bg-blue-500 text-white'>Edit</button></Link>
+                                <button className='rounded-md px-2 py-1 w-1/2 mx-2 bg-red-400 hover:bg-red-500 text-white' onClick={() => deleteUserPost(item?._id)}>Delete</button>
+                            </div>} />
                     ))
                 }
             </div>

@@ -52,7 +52,7 @@ const Login = ({ formOpen, handleFormClose }) => {
 
     const helperTextFunction = () => {
         return (
-            <Typography className='text-xs text-blue-400 hover:cursor-pointer hover:text-blue-500' onClick={() => setShowPassword(!showPassword)}>{showPassword ? 'Hide' : 'Show'} Password</Typography>
+            <p className='text-xs text-blue-400 hover:cursor-pointer hover:text-blue-500' onClick={() => setShowPassword(!showPassword)}>{showPassword ? 'Hide' : 'Show'} Password</p>
         )
     }
 
@@ -67,24 +67,27 @@ const Login = ({ formOpen, handleFormClose }) => {
             }}
         >
             <DialogTitle>
-                <Typography className='text-center font-semibold text-2xl'>{loginText}</Typography>
+                <p className='text-center font-semibold text-xl'>{loginText}</p>
             </DialogTitle>
             <Divider className='bg-gray-600 border-b-1' />
             <DialogContent className='flex flex-col justify-center'>
                 {
                     !isLoginForm && <>
-                        <TextField label='First Name' name='firstName' onChange={handleChange} className='w-full my-2' type='text' required />
-                        <TextField label='Last Name' name='lastName' onChange={handleChange} className='w-full my-2' type='text' required />
+                        <TextField label='First Name' name='firstName' onChange={handleChange} className='w-full' type='text' required />
+                        <span className='my-1'></span>
+                        <TextField label='Last Name' name='lastName' onChange={handleChange} className='w-full' type='text' required />
                     </>
                 }
-                <TextField label='Email' name='email' onChange={handleChange} className='w-full my-2' type='eamil' required />
-                <TextField label='Password' name='password' onChange={handleChange} className='w-full my-2' type={showPassword ? 'text' : 'password'} required helperText={helperTextFunction()}/>
+                <span className='my-1'></span>
+                <TextField label='Email' name='email' onChange={handleChange} className='w-full' type='eamil' required />
+                <span className='my-1'></span>
+                <TextField label='Password' name='password' onChange={handleChange} className='w-full' type={showPassword ? 'text' : 'password'} required helperText={helperTextFunction()}/>
             </DialogContent>
             {/* Action Buttons */}
             <DialogActions className='flex flex-col'>
                 <div className='w-[90%] mx-auto mb-4 flex justify-between'>
-                    <Button className='text-white rounded-lg mx-2 bg-red-500 hover:bg-red-700 w-1/2' onClick={() => handleFormClose()}>Cancel</Button>
-                    <Button className='text-white rounded-lg mx-2 bg-blue-500 w-1/2 hover:bg-blue-600' onClick={submitHandler}>{loginText}</Button>
+                    <button className='text-white rounded-lg mx-2 bg-red-500 hover:bg-red-700 w-1/2 py-1' onClick={() => handleFormClose()}>Cancel</button>
+                    <button className='text-white rounded-lg mx-2 bg-blue-500 w-1/2 hover:bg-blue-600 py-1' onClick={submitHandler}>{loginText}</button>
                 </div>
                 <Typography className='text-sm text-[#849dfc] hover:cursor-pointer hover:text-[#607deb]' onClick={() => setIsLoginForm(prevState => !prevState)}>{isLoginForm ? 'Create New Account' : 'Login Now'}</Typography>
             </DialogActions>
